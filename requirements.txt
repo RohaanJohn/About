@@ -12,4 +12,4 @@ whitenoise==5.2.0
 Pillow==2.2.2
 jinja2==3.0.1
 pathlib==1.0.1
-os==3.9.0
+os
