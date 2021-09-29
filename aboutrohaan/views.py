@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 import smtplib
+import os
+from os import environ
 # Create your views here.
 def index(request):
   return render(request, 'index.html')
@@ -13,10 +15,12 @@ def contact(request):
         email = request.POST['email']
         username = request.POST['username']
         msg = request.POST['message']
+        
+        Email_Password = os.environ.get('Email_Password')
 
         s = smtplib.SMTP('smtp.gmail.com', 587) 
         s.starttls() 
-        s.login("thealphadebuggers@gmail.com", "alphadebuggers12345689")
+        s.login("thealphadebuggers@gmail.com", Email_Password)
         SUBJECT = "Thank you!"
         TEXT = f"Hi {username}! Thank you for checking out my website!"
         message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
@@ -24,7 +28,7 @@ def contact(request):
 
         s = smtplib.SMTP('smtp.gmail.com', 587) 
         s.starttls() 
-        s.login("thealphadebuggers@gmail.com", "alphadebuggers12345689")
+        s.login("thealphadebuggers@gmail.com", Email_Password)
         SUBJECT = "Contact"
         TEXT = f"Using the email address {email}, here is a message from {username}: {msg}"
         message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
