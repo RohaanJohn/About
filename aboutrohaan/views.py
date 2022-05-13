@@ -40,5 +40,5 @@ def contact(request):
       
         return redirect('/')
   else:
-         #return render(request, 'contact.html')
+         return render(request, 'contact.html')
          return redirect('https://bio.link/RohaanJohn')
